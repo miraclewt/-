@@ -1,0 +1,442 @@
+/* =========================================================
+ *  Tech-Share 主题  ——  封面 / 正文 / 侧边栏 / 打印 / Reveal
+ *  作者：you
+ *  兼容：Markdown Preview Enhanced v0.8+ (VS Code)
+ * ======================================================= */
+
+/* ---------- 1. 基础变量 ---------- */
+.markdown-preview.markdown-preview {
+  --color-bg: #fafbfc;
+  --color-text: #24292e;
+  --color-primary: #0969da;
+  --color-border: #d0d7de;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: var(--font-base);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+  padding: 0 2em 4em;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+/* 右上角logo - 只在正文显示，在正文之上 */
+.markdown-preview.markdown-preview::before {
+  content: "";
+  position: fixed;
+  top: 5px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background-image: url('file:///C:/Users/18304/Desktop/markdown/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* 封面区域不显示右上角logo */
+.markdown-preview.markdown-preview > div:first-of-type::before {
+  display: none;
+}
+
+/* ---------- 2. 封面区域 ---------- */
+.markdown-preview.markdown-preview > div:first-of-type {
+  text-align: center;
+  padding: 48px 24px 36px;
+  margin: 2em 0 3em;
+}
+
+/* Logo - 封面logo */
+.markdown-preview.markdown-preview > div:first-of-type img[alt="Logo"] {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 24px;
+  display: block;
+}
+
+/* 目录页样式 */
+.markdown-preview.markdown-preview h1:contains("目录") {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2cm 0 1cm;
+  color: #1a365d;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+/* 正文样式 */
+.markdown-preview.markdown-preview h1:not(:contains("目录")) {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 1.5cm 0 0.8cm;
+  color: #1a365d;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.markdown-preview.markdown-preview h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 1.5cm 0 0.5cm 0;
+  color: #2d3748;
+}
+
+.markdown-preview.markdown-preview h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 1cm 0 0.3cm 0;
+  color: #4a5568;
+}
+
+/* 代码块样式 */
+.markdown-preview.markdown-preview pre {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 12px 0;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+/* 注意和警告样式 */
+.markdown-preview.markdown-preview blockquote {
+  background-color: #ebf8ff;
+  border-left: 4px solid #4299e1;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 2px;
+}
+
+.markdown-preview.markdown-preview blockquote.warning {
+  background-color: #fffaf0;
+  border-left: 4px solid #ed8936;
+}
+
+/* 大标题 */
+.markdown-preview.markdown-preview > div:first-of-type h1 {
+  font-size: 2.4em;
+  color: #111827;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+/* 副标题 */
+.markdown-preview.markdown-preview > div:first-of-type p:nth-of-type(1) {
+  font-size: 1.2em;
+  color: #6b7280;
+  margin: 0 0 32px;
+  line-height: 1.4;
+}
+
+/* 更新记录表格 */
+.markdown-preview.markdown-preview > div:first-of-type table {
+  margin: 24px auto 32px !important;
+  font-size: 0.9em;
+  border-collapse: collapse;
+  width: auto !important;
+  min-width: 400px;
+  display: table !important;
+}
+.markdown-preview.markdown-preview > div:first-of-type table th,
+.markdown-preview.markdown-preview > div:first-of-type table td {
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  text-align: center;
+}
+.markdown-preview.markdown-preview > div:first-of-type table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* 版权声明 */
+.markdown-preview.markdown-preview > div:first-of-type p:last-of-type {
+  font-size: 0.8em;
+  color: #9ca3af;
+  margin-top: 48px;
+  text-align: center;
+}
+
+/* ---------- 3. 正文样式 ---------- */
+.markdown-preview.markdown-preview h1,
+.markdown-preview.markdown-preview h2,
+.markdown-preview.markdown-preview h3 {
+  color: var(--color-primary);
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+.markdown-preview.markdown-preview code {
+  font-family: var(--font-mono);
+  background: #f6f8fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+.markdown-preview.markdown-preview pre {
+  background: #f6f8fa;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.markdown-preview.markdown-preview blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1em;
+  color: #57606a;
+  margin: 1em 0;
+}
+
+/* ---------- 4. 侧边栏目录 ---------- */
+.md-sidebar-toc.md-sidebar-toc {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.md-sidebar-toc.md-sidebar-toc a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.md-sidebar-toc.md-sidebar-toc ul {
+  padding-left: 1.2em;
+}
+.md-sidebar-toc.md-sidebar-toc > ul > li > a {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ====== A4 打印专用样式 ====== */
+@media print {
+  /* A4 页面尺寸设置 */
+  @page {
+    size: A4;
+    margin: 2cm 1.5cm;
+    marks: crop cross;
+  }
+
+  /* 隐藏侧边栏目录 */
+  .md-sidebar-toc.md-sidebar-toc {
+    display: none !important;
+  }
+
+  /* 基础样式重置 */
+  .markdown-preview.markdown-preview {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  /* 封面区域打印优化 */
+  .markdown-preview.markdown-preview > div:first-of-type {
+    text-align: center;
+    padding: 2cm 0 1cm !important;
+    margin: 0 !important;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 4cm); /* 减去页边距 */
+  }
+
+/* Logo 打印优化 - 确保居中且大小合适 */
+.markdown-preview.markdown-preview > div:first-of-type img[alt="Logo"] {
+  width: 100px !important;
+  height: auto !important;
+  margin: 0 auto 20px !important;
+  display: block;
+}
+
+/* 打印时右上角logo */
+.markdown-preview.markdown-preview::before {
+  content: "";
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  width: 45px;
+  height: 45px;
+  background-image: url('file:///C:/Users/18304/Desktop/markdown/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+  /* 标题打印优化 */
+  .markdown-preview.markdown-preview > div:first-of-type h1 {
+    font-size: 24pt !important;
+    color: black !important;
+    margin-bottom: 12px !important;
+  }
+
+  .markdown-preview.markdown-preview > div:first-of-type p:nth-of-type(1) {
+    font-size: 14pt !important;
+    color: #666 !important;
+  }
+
+/* 表格打印优化 */
+.markdown-preview.markdown-preview > div:first-of-type table {
+  margin: 1cm auto 0 !important;
+  font-size: 10pt !important;
+  border: 1px solid #ccc !important;
+  display: table !important;
+  width: auto !important;
+}
+
+  .markdown-preview.markdown-preview > div:first-of-type table th,
+  .markdown-preview.markdown-preview > div:first-of-type table td {
+    border: 1px solid #ccc !important;
+    padding: 4px 8px !important;
+    text-align: center !important;
+  }
+
+  .markdown-preview.markdown-preview > div:first-of-type table th {
+    background: #f5f5f5 !important;
+    font-weight: bold;
+  }
+
+  /* 版权声明打印优化 - 固定在页面底部 */
+  .markdown-preview.markdown-preview > div:first-of-type p:last-of-type {
+    font-size: 9pt !important;
+    color: #999 !important;
+    margin-top: auto !important; /* 使用 flexbox 自动间距 */
+    padding-bottom: 1cm !important;
+    text-align: center;
+  }
+
+  /* 正文内容打印优化 */
+  .markdown-preview.markdown-preview h1,
+  .markdown-preview.markdown-preview h2,
+  .markdown-preview.markdown-preview h3 {
+    color: black !important;
+    margin-top: 1.2em !important;
+    margin-bottom: 0.6em !important;
+    page-break-after: avoid;
+  }
+
+  .markdown-preview.markdown-preview h1 {
+    font-size: 18pt !important;
+  }
+
+  .markdown-preview.markdown-preview h2 {
+    font-size: 16pt !important;
+  }
+
+  .markdown-preview.markdown-preview h3 {
+    font-size: 14pt !important;
+  }
+
+  /* 代码块打印优化 */
+  .markdown-preview.markdown-preview code {
+    background: #f8f8f8 !important;
+    border: 1px solid #e1e1e1 !important;
+    font-size: 10pt !important;
+    page-break-inside: avoid;
+  }
+
+  .markdown-preview.markdown-preview pre {
+    background: #f8f8f8 !important;
+    border: 1px solid #e1e1e1 !important;
+    padding: 8px !important;
+    font-size: 10pt !important;
+    page-break-inside: avoid;
+    overflow: hidden !important;
+  }
+
+  /* 引用块打印优化 */
+  .markdown-preview.markdown-preview blockquote {
+    border-left: 3px solid #666 !important;
+    padding-left: 12px !important;
+    color: #666 !important;
+    margin: 0.8em 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* 图片打印优化 */
+  .markdown-preview.markdown-preview img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* 链接打印优化 */
+  .markdown-preview.markdown-preview a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+
+  /* 列表打印优化 */
+  .markdown-preview.markdown-preview ul,
+  .markdown-preview.markdown-preview ol {
+    page-break-inside: avoid;
+  }
+
+  /* 表格内容打印优化 */
+  .markdown-preview.markdown-preview table {
+    page-break-inside: avoid;
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  .markdown-preview.markdown-preview table th,
+  .markdown-preview.markdown-preview table td {
+    border: 1px solid #ccc !important;
+    padding: 4px 8px !important;
+    text-align: left !important;
+  }
+
+  /* 避免在元素内部分页 */
+  .markdown-preview.markdown-preview h1,
+  .markdown-preview.markdown-preview h2,
+  .markdown-preview.markdown-preview h3,
+  .markdown-preview.markdown-preview h4,
+  .markdown-preview.markdown-preview h5,
+  .markdown-preview.markdown-preview h6 {
+    page-break-after: avoid;
+  }
+
+  /* 强制分页控制 */
+  .page-break {
+    page-break-before: always;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== 预览：封面表格居中 ===== */
+.cover table {
+  margin: 24px auto 0 !important;   /* 表格水平居中 */
+  width: auto !important;
+  display: table !important;
+}
+.cover table th,
+.cover table td {
+  text-align: center !important;    /* 单元格内容居中 */
+}
+
+/* 确保封面表格在预览和打印时都居中 */
+.markdown-preview.markdown-preview > div:first-of-type table {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: table !important;
+  width: auto !important;
+}
